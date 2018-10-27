@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta property="qc:admins" content="35713601456206461667" />
+<meta name="google-site-verification" content="ASvuWy--zUAJIx9FVLMbJEOc-f--FJHSLjhIStGsBu4" />
+<meta name="baidu-site-verification" content="ObsD3UkXh5" /><!--[if lte IE 8]><script>window.location.href='http://cdn.dmeng.net/upgrade-your-browser.html?referrer='+location.href;</script><![endif]-->
+<link rel="Bookmark" href="/favicon.ico" /><link rel="shortcut icon" href="/favicon.ico" />
+<title>C语言函数&#8212;calloc &#045; C|C语言库函数|后端开发 &#45; IT驿站</title>
+<link rel="profile" href="http://gmpg.org/xfn/11" />
+<link rel="pingback" href="http://www.itworld123.com/xmlrpc.php" />
+<link rel="canonical" href="http://www.itworld123.com/2017/01/15/c%e8%af%ad%e8%a8%80%e5%87%bd%e6%95%b0-calloc/">
+<link href="http://www.itworld123.com/wp-content/themes/dmeng2.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://www.itworld123.com/wp-content/themes/dmeng2.0/css/dmeng-2.0.7.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="http://www.itworld123.com/wp-content/themes/dmeng2.0/js/html5shiv-3.7.0.js"></script><script src="http://www.itworld123.com/wp-content/themes/dmeng2.0/js/respond-1.4.2.min.js"></script><![endif]-->
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="IT驿站 &raquo; C语言函数&#8212;calloc评论Feed" href="http://www.itworld123.com/2017/01/15/c%e8%af%ad%e8%a8%80%e5%87%bd%e6%95%b0-calloc/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.itworld123.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.8"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<script type='text/javascript'>
+/* <![CDATA[ */
+window.CKEDITOR_BASEPATH = "http://www.itworld123.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/";
+var ckeditorSettings = { "textarea_id": "comment", "pluginPath": "http:\/\/www.itworld123.com\/wp-content\/plugins\/ckeditor-for-wordpress\/", "autostart": true, "excerpt_state": false, "qtransEnabled": false, "outputFormat": { "indent": true, "breakBeforeOpen": true, "breakAfterOpen": true, "breakBeforeClose": true, "breakAfterClose": true }, "configuration": { "height": "160px", "skin": "kama", "scayt_autoStartup": false, "entities": true, "entities_greek": true, "entities_latin": true, "toolbar": "WordpressBasic", "templates_files": [ "http:\/\/www.itworld123.com\/wp-content\/plugins\/ckeditor-for-wordpress\/ckeditor.templates.js" ], "stylesCombo_stylesSet": "wordpress:http:\/\/www.itworld123.com\/wp-content\/plugins\/ckeditor-for-wordpress\/ckeditor.styles.js", "allowedContent": true, "customConfig": "http:\/\/www.itworld123.com\/wp-content\/plugins\/ckeditor-for-wordpress\/ckeditor.config.js" }, "externalPlugins": [  ], "additionalButtons": [  ] }
+/* ]]> */
+</script><style type="text/css">
+			#content table.cke_editor { margin:0; }
+			#content table.cke_editor tr td { padding:0;border:0; }
+		</style><script type='text/javascript' src='http://www.itworld123.com/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='http://www.itworld123.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='http://www.itworld123.com/wp-content/plugins/ckeditor-for-wordpress/ckeditor/ckeditor.js?t=F7J8&#038;ver=4.5.3.3'></script>
+<script type='text/javascript' src='http://www.itworld123.com/wp-content/plugins/ckeditor-for-wordpress/includes/ckeditor.utils.js?t=F7J8&#038;ver=4.5.3.3'></script>
+<link rel='https://api.w.org/' href='http://www.itworld123.com/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.itworld123.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.itworld123.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='C语言函数&#8212;ceil' href='http://www.itworld123.com/2017/01/15/c%e8%af%ad%e8%a8%80%e5%87%bd%e6%95%b0-ceil/' />
+<link rel='next' title='C语言函数&#8212;cabs' href='http://www.itworld123.com/2017/01/15/c%e8%af%ad%e8%a8%80%e5%87%bd%e6%95%b0-cabs/' />
+<link rel='shortlink' href='http://www.itworld123.com/?p=8417' />
+<link rel="alternate" type="application/json+oembed" href="http://www.itworld123.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.itworld123.com%2F2017%2F01%2F15%2Fc%25e8%25af%25ad%25e8%25a8%2580%25e5%2587%25bd%25e6%2595%25b0-calloc%2F" />
+<link rel="alternate" type="text/xml+oembed" href="http://www.itworld123.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.itworld123.com%2F2017%2F01%2F15%2Fc%25e8%25af%25ad%25e8%25a8%2580%25e5%2587%25bd%25e6%2595%25b0-calloc%2F&#038;format=xml" />
+
+<link rel="stylesheet" href="http://www.itworld123.com/wp-content/plugins/wp-synhighlight/themes/default/wp-synhighlighter.css" type="text/css" media="screen" />
+
+<script type="text/javascript" src="http://www.itworld123.com/wp-content/plugins/wp-synhighlight/themes/default/wp-synhighlighter.js"></script>
+<meta name="keywords" content="c,calloc,函数,C,C语言库函数,后端开发" /><meta name="description" content="" />		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+<link rel="icon" href="http://img.itworld123.com/uploads/2016/11/itworld100.png" sizes="32x32" />
+<link rel="icon" href="http://img.itworld123.com/uploads/2016/11/itworld100.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="http://img.itworld123.com/uploads/2016/11/itworld100.png" />
+<meta name="msapplication-TileImage" content="http://img.itworld123.com/uploads/2016/11/itworld100.png" />
+<script type="text/javascript">var ajaxurl = 'http://www.itworld123.com/wp-admin/admin-ajax.php';var isUserLoggedIn = 0;var loginUrl = 'http://www.itworld123.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.itworld123.com%2F2017%2F01%2F15%2Fc%25E8%25AF%25AD%25E8%25A8%2580%25E5%2587%25BD%25E6%2595%25B0-calloc%2F';var dmengPath = 'http://www.itworld123.com/wp-content/themes/dmeng2.0/';var dmengTracker = {"type":"single","pid":8417};</script><script src="http://www.itworld123.com/wp-content/themes/dmeng2.0/js/bootstrap.min.js"></script><script src="http://www.itworld123.com/wp-content/themes/dmeng2.0/js/dmeng-2.0.7.js"></script>
+</head>
+<body class="post-template-default single single-post postid-8417 single-format-standard custom-background">
+<header id="masthead" itemscope itemtype="http://schema.org/WPHeader">
+	<div class="container header-content"><div class="row"><div class="col-lg-8 col-md-7 col-sm-6 col-xs-12"><div class="header-logo"><a href="http://www.itworld123.com/" rel="home"><img src="http://img.itworld123.com/uploads/2016/11/itworld64-1.png" width="64" height="64" alt="IT驿站" /></a></div><div class="header-text"><div class="name"><a href="http://www.itworld123.com/" rel="home" id="name" style="color:#235ce0">IT驿站</a></div><div class="description" id="desc" style="color:#235ce0">为广大程序猿提供最有价值的信息</div></div></div><div class="col-lg-4 col-md-5 col-sm-6 col-xs-12"><div class="header-profile"><ul class="user-profile"><li>2018年10月27日，星期六</li><li class="tabs">登录：<a href="http://www.itworld123.com/wp-login.php?redirect_to=http%3A%2F%2Fwww.itworld123.com%2F2017%2F01%2F15%2Fc%25E8%25AF%25AD%25E8%25A8%2580%25E5%2587%25BD%25E6%2595%25B0-calloc%2F" class="wordpress" rel="nofollow">本地账号</a><a href="http://www.itworld123.com/?connect=qq&action=login&redirect=http%3A%2F%2Fwww.itworld123.com%2F2017%2F01%2F15%2Fc%25E8%25AF%25AD%25E8%25A8%2580%25E5%2587%25BD%25E6%2595%25B0-calloc%2F" class="qq" rel="nofollow">QQ账号</a></li></ul></div></div></div></div>	<div class="navbar navbar-default navbar-static-top" role="banner">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".header-navbar-collapse"><span class="sr-only">切换菜单</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="http://www.itworld123.com/" rel="home" itemprop="headline">IT驿站</a>			</div>
+			<nav id="navbar" class="collapse navbar-collapse header-navbar-collapse" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+			<ul class="nav navbar-nav"><li class="dropdown"><a href="http://www.itworld123.com/category/ti/" class="dropdown-toggle" data-toggle="dropdown" itemprop="url">技术资讯 <span class="caret"></span></a></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.itworld123.com/category/ti/tu/" itemprop="url">业界</a></li><li><a href="http://www.itworld123.com/category/ti/cloud/" itemprop="url">云计算</a></li><li><a href="http://www.itworld123.com/category/ti/stor/" itemprop="url">存储</a></li><li><a href="http://www.itworld123.com/category/ti/pl/" itemprop="url">编程语言</a></li></ul></li><li class="dropdown"><a href="http://www.itworld123.com/category/fe/" class="dropdown-toggle" data-toggle="dropdown" itemprop="url">前端开发 <span class="caret"></span></a></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.itworld123.com/category/fe/html/" itemprop="url">HTML</a></li><li><a href="http://www.itworld123.com/category/fe/javascript/" itemprop="url">JavaScript</a></li><li><a href="http://www.itworld123.com/category/fe/bootstrap2/" itemprop="url">Bootstrap 2</a></li><li><a href="http://www.itworld123.com/category/fe/bootstrap3/" itemprop="url">Bootstrap 3</a></li><li><a href="http://www.itworld123.com/category/fe/css/" itemprop="url">CSS</a></li><li><a href="http://www.itworld123.com/category/fe/jquery/" itemprop="url">JQuery</a></li></ul></li><li class="dropdown active"><a href="http://www.itworld123.com/category/be/" class="dropdown-toggle" data-toggle="dropdown" itemprop="url">后端开发 <span class="caret"></span></a></a><ul class="dropdown-menu" role="menu"><li class="active"><a href="http://www.itworld123.com/category/be/c/" itemprop="url">C</a></li><li><a href="http://www.itworld123.com/category/be/cpp/" itemprop="url">C++</a></li><li><a href="http://www.itworld123.com/category/be/java/" itemprop="url">Java</a></li><li><a href="http://www.itworld123.com/category/be/swift-be/" itemprop="url">Swift</a></li><li><a href="http://www.itworld123.com/category/be/php/" itemprop="url">PHP</a></li><li><a href="http://www.itworld123.com/category/be/python/" itemprop="url">Python</a></li><li><a href="http://www.itworld123.com/category/be/python/python3-bs-jc/" itemprop="url">Python3入门教程</a></li><li><a href="http://www.itworld123.com/category/be/sql/" itemprop="url">SQL</a></li></ul></li><li class="dropdown"><a href="http://www.itworld123.com/category/other-pro/" class="dropdown-toggle" data-toggle="dropdown" itemprop="url">其它开发 <span class="caret"></span></a></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.itworld123.com/category/other-pro/%e7%bd%91%e7%bb%9c%e9%80%9a%e4%bf%a1/" itemprop="url">网络通信</a></li><li><a href="http://www.itworld123.com/category/other-pro/data-structures-algorithms/" itemprop="url">数据结构与算法</a></li><li><a href="http://www.itworld123.com/category/other-pro/re-exp/" itemprop="url">正则表达式</a></li><li><a href="http://www.itworld123.com/category/other-pro/version-control/" itemprop="url">版本控制</a></li></ul></li><li class="dropdown"><a href="http://www.itworld123.com/category/other-pro/" class="dropdown-toggle" data-toggle="dropdown" itemprop="url">设计与管理 <span class="caret"></span></a></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.itworld123.com/category/other-pro/system-arch/" itemprop="url">系统架构</a></li><li><a href="http://www.itworld123.com/category/other-pro/software-design/" itemprop="url">软件设计</a></li><li><a href="http://www.itworld123.com/category/other-pro/software-engineering/" itemprop="url">软件工程</a></li></ul></li><li class="dropdown"><a href="http://www.itworld123.com/category/os/" class="dropdown-toggle" data-toggle="dropdown" itemprop="url">操作系统 <span class="caret"></span></a></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.itworld123.com/category/os/centos/" itemprop="url">CentOS</a></li><li><a href="http://www.itworld123.com/category/os/solaris/" itemprop="url">Solaris</a></li><li><a href="http://www.itworld123.com/category/os/ubuntu/" itemprop="url">Ubuntu</a></li><li><a href="http://www.itworld123.com/category/os/opensuse/" itemprop="url">openSUSE</a></li></ul></li><li class="dropdown"><a href="http://www.itworld123.com/category/site-om/" class="dropdown-toggle" data-toggle="dropdown" itemprop="url">建站与运维 <span class="caret"></span></a></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.itworld123.com/category/site-om/base/" itemprop="url">入门基础</a></li><li><a href="http://www.itworld123.com/category/site-om/seo/" itemprop="url">SEO</a></li><li><a href="http://www.itworld123.com/category/site-om/server-sql/" itemprop="url">服务器与数据库</a></li><li><a href="http://www.itworld123.com/category/site-om/autoom/" itemprop="url">运维自动化</a></li></ul></li><li class="dropdown"><a href="http://www.itworld123.com/category/vands/" class="dropdown-toggle" data-toggle="dropdown" itemprop="url">云计算和存储 <span class="caret"></span></a></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.itworld123.com/category/vands/%e5%ad%98%e5%82%a8%e5%9f%ba%e7%a1%80/" itemprop="url">存储基础</a></li><li><a href="http://www.itworld123.com/category/vands/ceph/" itemprop="url">Ceph</a></li><li><a href="http://www.itworld123.com/category/vands/glusterfs/" itemprop="url">Glusterfs</a></li><li><a href="http://www.itworld123.com/category/vands/openstack/" itemprop="url">OpenStack</a></li><li><a href="http://www.itworld123.com/category/vands/swift/" itemprop="url">Swift</a></li></ul></li><li class="dropdown"><a href="http://www.itworld123.com/category/programmer/" class="dropdown-toggle" data-toggle="dropdown" itemprop="url">程序人生 <span class="caret"></span></a></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.itworld123.com/category/programmer/experience/" itemprop="url">成长经历</a></li><li><a href="http://www.itworld123.com/category/programmer/books/" itemprop="url">经典图书</a></li><li><a href="http://www.itworld123.com/category/programmer/opensource-sw/" itemprop="url">开源软件</a></li></ul></li><li class="dropdown"><a href="http://www.itworld123.com/%e5%85%b3%e4%ba%8e/" class="dropdown-toggle" data-toggle="dropdown" itemprop="url">关于 <span class="caret"></span></a></a><ul class="dropdown-menu" role="menu"><li><a href="http://www.itworld123.com/%e5%85%b3%e4%ba%8e%e6%88%91%e4%bb%ac/" itemprop="url">关于我们</a></li><li><a href="http://www.itworld123.com/sample-page/" itemprop="url">免责声明</a></li></ul></li></ul>			<!-- <form class="navbar-form navbar-left" role="search" method="get" id="searchform" action="http://www.itworld123.com/">
+				<div class="form-group">
+					<input type="text" class="form-control" placeholder="搜索 &hellip;" name="s" id="s" required>
+				</div>
+				<button type="submit" class="btn btn-default" id="searchsubmit"><span class="glyphicon glyphicon-search"></span></button>
+			</form> -->
+			</nav><!-- #navbar -->
+		</div>
+	</div>
+</header><!-- #masthead -->
+<div id="main" class="container" role="main" itemscope itemprop="mainContentOfPage" itemtype="http://schema.org/Blog">
+	<div class="row">
+					<article id="content" class="col-lg-8 col-md-8 single" data-post-id="8417" role="article" itemscope itemtype="http://schema.org/Article">
+					<div class="panel panel-default">
+				<div class="panel-body">
+					<div class="entry-header page-header">
+						<h1 class="entry-title h3" itemprop="name">C语言函数&#8212;calloc</h1>
+						<div class="entry-meta">
+	<div class="entry-set-font"><span id="set-font-small" class="disabled">A<sup>-</sup></span><span id="set-font-big">A<sup>+</sup></span></div>
+	<span class="glyphicon glyphicon-user"></span> <a href="http://www.itworld123.com/author/stor007/" itemprop="author">stor007</a>
+	<span class="glyphicon glyphicon-time"></span> <time class="entry-date" datetime="2017-01-15T16:42:03+00:00"  itemprop="datePublished">2017年1月15日</time>
+	<span class="glyphicon glyphicon-comment"></span> <a href="http://www.itworld123.com/2017/01/15/c%e8%af%ad%e8%a8%80%e5%87%bd%e6%95%b0-calloc/#comments" itemprop="discussionUrl" itemscope itemtype="http://schema.org/Comment"><span itemprop="interactionCount">0</span></a>
+	<span class="glyphicon glyphicon-eye-open"></span> 0 次浏览<span class="glyphicon glyphicon-folder-open"></span> <a href="http://www.itworld123.com/category/be/c/" rel="category" itemprop="articleSection">C</a> | <a href="http://www.itworld123.com/category/be/c/c-lib-function/" rel="category" itemprop="articleSection">C语言库函数</a> | <a href="http://www.itworld123.com/category/be/" rel="category" itemprop="articleSection">后端开发</a><span itemprop="keywords"><span class="glyphicon glyphicon-tags"></span> <a href="http://www.itworld123.com/tag/c/" rel="tag">c</a> | <a href="http://www.itworld123.com/tag/calloc/" rel="tag">calloc</a> | <a href="http://www.itworld123.com/tag/%e5%87%bd%e6%95%b0/" rel="tag">函数</a></span></div>
+							</div>
+					<div class="entry-content"  itemprop="articleBody">
+						<h2>函数名</h2>
+<p>cabs
+</p>
+<h2>功  能</h2>
+<p>计算复数的绝对值
+</p>
+<h2>用  法</h2>
+<p>double cabs(struct complex z);
+</p>
+<h2>程序例</h2>
+<pre class='brush:cpp;'>
+#include &lt;stdio.h&gt; 
+#include &lt;math.h&gt; 
+
+int main(void) 
+{ 
+   struct complex z; 
+   double val; 
+
+   z.x = 2.0; 
+   z.y = 1.0; 
+   val = cabs(z); 
+
+   printf("The absolute value of %.2lfi %.2lfj is %.2lf", z.x, z.y, val); 
+   return 0; 
+} 
+  
+  
+  
+
+</pre>
+											</div>
+					<div class="entry-details" itemprop="copyrightHolder" itemtype="http://schema.org/Organization" itemscope>
+			<details>
+				<summary>如果引用本站的原创文章，请注明原文链接：<a href="http://www.itworld123.com/2017/01/15/c%e8%af%ad%e8%a8%80%e5%87%bd%e6%95%b0-calloc/" rel="author">C语言函数&#8212;calloc</a>，本站保留追究责任的权利！</summary>
+			</details>
+	</div>				</div>
+								<div class="entry-footer clearfix" role="toolbar">
+					<div class="bd-share">
+						<div class="bdsharebuttonbox"><a class="bds_qzone" data-cmd="qzone"></a><a class="bds_tsina" data-cmd="tsina"></a><a class="bds_weixin" data-cmd="weixin"></a><a class="bds_more" data-cmd="more"></a></div><script>var share_excerpt = '【C语言函数&#8212;calloc】函数名cabs 功  能计算复数的绝对值 用  法double cabs(struct complex z); 程序例#include &lt;stdio.h&gt; #include &lt;math.h&gt; int main(void) {    struct complex z;    double val;    z.x = 2.0;    z.y = 1.0;    val = cabs(z);    printf(\"The absolute value of %.2lfi %.2lfj is %.2lf\", z.x, z....';var share_pic = '';var share_url = 'http://www.itworld123.com/2017/01/15/c%e8%af%ad%e8%a8%80%e5%87%bd%e6%95%b0-calloc/?fid=0';var wkey = '';var qkey = '101353025';window._bd_share_config = { common : { bdText : share_excerpt,bdDesc : share_excerpt,bdUrl : share_url, bdPic : share_pic, bdSnsKey : {'tsina':wkey, 'tqq':qkey,'qzone':qkey} }, share : [{ 'bdStyle' : 1, 'bdSize' : 24 }] };with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];</script>					</div>
+					<div class="btn-group vote-group" data-votes-up="0" data-votes-down="0" data-vote-id="8417" data-vote-type="post" itemscope itemtype="http://data-vocabulary.org/Review-aggregate">
+<a href="javascript:;" class="btn btn-default up"><span class="glyphicon glyphicon-thumbs-up"></span> <span class="votes">0</span><div class="hide" itemprop="rating" itemscope itemtype="http://data-vocabulary.org/Rating"><span itemprop="average">1</span><span itemprop="votes">0</span><span itemprop="count">0</span></div></a>
+<a href="javascript:;" class="btn btn-default down"><span class="glyphicon glyphicon-thumbs-down"></span></a>
+</div><span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.itworld123.com/" title="IT驿站" itemprop="url"><span itemprop="title">IT驿站</span></a></span> › <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.itworld123.com/category/be/" title="后端开发" itemprop="url"><span itemprop="title">后端开发</span></a></span> ›  › <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.itworld123.com/category/be/c/" title="C" itemprop="url"><span itemprop="title">C</span></a></span> › <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.itworld123.com/category/be/" title="后端开发" itemprop="url"><span itemprop="title">后端开发</span></a></span> › <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.itworld123.com/category/be/c/" title="C" itemprop="url"><span itemprop="title">C</span></a></span> ›  › <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.itworld123.com/category/be/c/c-lib-function/" title="C语言库函数" itemprop="url"><span itemprop="title">C语言库函数</span></a></span> › <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.itworld123.com" title="文章" itemprop="url"><span itemprop="title">文章</span></a></span> › <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb"><a href="http://www.itworld123.com/2017/01/15/c%e8%af%ad%e8%a8%80%e5%87%bd%e6%95%b0-calloc/" title="C语言函数&#8212;calloc" itemprop="url"><span itemprop="title">C语言函数&#8212;calloc</span></a></span>				</div>
+				<div class="panel-footer profile clearfix" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+					<a class="author-avatar" href="http://www.itworld123.com/author/stor007/">
+						<img src="http://www.itworld123.com/wp-content/themes/dmeng2.0/images/grey.png" data-original="http://img.itworld123.com/uploads/2016/10/06175656-36ededac733645a89222e0cf2f5fa85b-50x50.jpg" class="avatar" width="50" height="50" />					</a>
+					<div class="author-description">
+						<div class="author-name"> 作者 : <span itemprop="name">stor007</span> </div>
+						<div itemprop="description">没有个人说明</div>
+					</div>
+				</div>
+			</div>
+			<nav class="pager" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+			<li class="previous"><a href="http://www.itworld123.com/2017/01/15/c%e8%af%ad%e8%a8%80%e5%87%bd%e6%95%b0-ceil/" rel="prev"><span class="text-muted">上一篇：</span> <span itemprop="name">C语言函数&#8212;ceil</span></a></li><li class="next"><a href="http://www.itworld123.com/2017/01/15/c%e8%af%ad%e8%a8%80%e5%87%bd%e6%95%b0-cabs/" rel="next"><span class="text-muted">下一篇：</span> <span itemprop="name">C语言函数&#8212;cabs</span></a></li>	</nav><!-- .navigation -->						<div class="panel panel-default" id="comments">
+	<div class="panel-body">评论已关闭。</div>
+</div>
+					 </article><!-- #content -->
+		<div id="sidebar" class="col-lg-4 col-md-4" role="complementary" itemscope itemtype="http://schema.org/WPSideBar">
+	<aside id="search-2" class="panel panel-default widget clearfix widget_search"><form class="input-group" role="search" method="get" id="searchform" action="http://www.itworld123.com/">
+	<span class="input-group-addon">搜索</span>
+	<input type="text" class="form-control" placeholder="请输入检索关键词 &hellip;" name="s" id="s" required>
+	<span class="input-group-btn"><button type="submit" class="btn btn-default" id="searchsubmit"><span class="glyphicon glyphicon-search"></span></button></span>
+
+</form>
+</aside>		<aside id="recent-posts-2" class="panel panel-default widget clearfix widget_recent_entries">		<h3 class="panel-heading widget-title">近期文章</h3>		<ul>
+											<li>
+					<a href="http://www.itworld123.com/2018/10/26/%e5%9f%ba%e4%ba%8evim%e7%9a%84ide%e9%85%8d%e7%bd%ae%e4%b9%8bgtags%e7%af%87/">基于Vim的IDE配置之gtags篇</a>
+									</li>
+											<li>
+					<a href="http://www.itworld123.com/2018/04/06/%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8f-%e7%9b%b4%e6%8e%a5%e6%8f%92%e5%85%a5%e6%8e%92%e5%ba%8fstraight-insertion-sort/">插入排序—直接插入排序(Straight Insertion Sort)</a>
+									</li>
+											<li>
+					<a href="http://www.itworld123.com/2018/04/01/tcp%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b%e8%af%a6%e8%a7%a3%e5%8f%8a%e9%87%8a%e6%94%be%e8%bf%9e%e6%8e%a5%e8%bf%87%e7%a8%8b/">TCP三次握手详解及释放连接过程</a>
+									</li>
+											<li>
+					<a href="http://www.itworld123.com/2018/04/01/select%e3%80%81poll%e3%80%81epoll%e4%b9%8b%e9%97%b4%e7%9a%84%e5%8c%ba%e5%88%ab%e6%80%bb%e7%bb%93/">select、poll、epoll之间的区别总结</a>
+									</li>
+											<li>
+					<a href="http://www.itworld123.com/2018/04/01/io%e5%a4%9a%e8%b7%af%e5%a4%8d%e7%94%a8%e4%b9%8bselect%e6%80%bb%e7%bb%93/">IO多路复用之select总结</a>
+									</li>
+					</ul>
+		</aside><aside id="recent-comments-2" class="panel panel-default widget clearfix widget_recent_comments"><h3 class="panel-heading widget-title">近期评论</h3><ul id="recentcomments"></ul></aside><aside id="archives-2" class="panel panel-default widget clearfix widget_archive"><h3 class="panel-heading widget-title">文章归档</h3>		<ul>
+			<li><a href='http://www.itworld123.com/2018/10/'>2018年十月</a></li>
+	<li><a href='http://www.itworld123.com/2018/04/'>2018年四月</a></li>
+	<li><a href='http://www.itworld123.com/2017/06/'>2017年六月</a></li>
+	<li><a href='http://www.itworld123.com/2017/03/'>2017年三月</a></li>
+	<li><a href='http://www.itworld123.com/2017/02/'>2017年二月</a></li>
+	<li><a href='http://www.itworld123.com/2017/01/'>2017年一月</a></li>
+	<li><a href='http://www.itworld123.com/2016/12/'>2016年十二月</a></li>
+	<li><a href='http://www.itworld123.com/2016/11/'>2016年十一月</a></li>
+	<li><a href='http://www.itworld123.com/2016/10/'>2016年十月</a></li>
+	<li><a href='http://www.itworld123.com/2016/09/'>2016年九月</a></li>
+	<li><a href='http://www.itworld123.com/2016/08/'>2016年八月</a></li>
+		</ul>
+		</aside></div><!-- #sidebar -->
+	</div>
+ </div><!-- #main -->
+<footer id="colophon" class="container" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
+	<div class="panel panel-default text-muted">
+		<div class="panel-body">
+<ul id="link_menu" class="breadcrumb"><li class="active"><span class="glyphicon glyphicon-list-alt"></span> 链接</li> <li><a href="http://www.itworld123.com/category/ti/" itemprop="url">技术资讯</a></li><li><a href="http://www.itworld123.com/category/ti/tu/" itemprop="url">业界</a></li><li><a href="http://www.itworld123.com/category/ti/cloud/" itemprop="url">云计算</a></li><li><a href="http://www.itworld123.com/category/ti/stor/" itemprop="url">存储</a></li><li><a href="http://www.itworld123.com/category/ti/pl/" itemprop="url">编程语言</a></li><li><a href="http://www.itworld123.com/category/fe/" itemprop="url">前端开发</a></li><li><a href="http://www.itworld123.com/category/fe/html/" itemprop="url">HTML</a></li><li><a href="http://www.itworld123.com/category/fe/javascript/" itemprop="url">JavaScript</a></li><li><a href="http://www.itworld123.com/category/fe/bootstrap2/" itemprop="url">Bootstrap 2</a></li><li><a href="http://www.itworld123.com/category/fe/bootstrap3/" itemprop="url">Bootstrap 3</a></li><li><a href="http://www.itworld123.com/category/fe/css/" itemprop="url">CSS</a></li><li><a href="http://www.itworld123.com/category/fe/jquery/" itemprop="url">JQuery</a></li><li class="active"><a href="http://www.itworld123.com/category/be/" itemprop="url">后端开发</a></li><li class="active"><a href="http://www.itworld123.com/category/be/c/" itemprop="url">C</a></li><li><a href="http://www.itworld123.com/category/be/cpp/" itemprop="url">C++</a></li><li><a href="http://www.itworld123.com/category/be/java/" itemprop="url">Java</a></li><li><a href="http://www.itworld123.com/category/be/swift-be/" itemprop="url">Swift</a></li><li><a href="http://www.itworld123.com/category/be/php/" itemprop="url">PHP</a></li><li><a href="http://www.itworld123.com/category/be/python/" itemprop="url">Python</a></li><li><a href="http://www.itworld123.com/category/be/python/python3-bs-jc/" itemprop="url">Python3入门教程</a></li><li><a href="http://www.itworld123.com/category/be/sql/" itemprop="url">SQL</a></li><li><a href="http://www.itworld123.com/category/other-pro/" itemprop="url">其它开发</a></li><li><a href="http://www.itworld123.com/category/other-pro/%e7%bd%91%e7%bb%9c%e9%80%9a%e4%bf%a1/" itemprop="url">网络通信</a></li><li><a href="http://www.itworld123.com/category/other-pro/data-structures-algorithms/" itemprop="url">数据结构与算法</a></li><li><a href="http://www.itworld123.com/category/other-pro/re-exp/" itemprop="url">正则表达式</a></li><li><a href="http://www.itworld123.com/category/other-pro/version-control/" itemprop="url">版本控制</a></li><li><a href="http://www.itworld123.com/category/other-pro/" itemprop="url">设计与管理</a></li><li><a href="http://www.itworld123.com/category/other-pro/system-arch/" itemprop="url">系统架构</a></li><li><a href="http://www.itworld123.com/category/other-pro/software-design/" itemprop="url">软件设计</a></li><li><a href="http://www.itworld123.com/category/other-pro/software-engineering/" itemprop="url">软件工程</a></li><li><a href="http://www.itworld123.com/category/os/" itemprop="url">操作系统</a></li><li><a href="http://www.itworld123.com/category/os/centos/" itemprop="url">CentOS</a></li><li><a href="http://www.itworld123.com/category/os/solaris/" itemprop="url">Solaris</a></li><li><a href="http://www.itworld123.com/category/os/ubuntu/" itemprop="url">Ubuntu</a></li><li><a href="http://www.itworld123.com/category/os/opensuse/" itemprop="url">openSUSE</a></li><li><a href="http://www.itworld123.com/category/site-om/" itemprop="url">建站与运维</a></li><li><a href="http://www.itworld123.com/category/site-om/base/" itemprop="url">入门基础</a></li><li><a href="http://www.itworld123.com/category/site-om/seo/" itemprop="url">SEO</a></li><li><a href="http://www.itworld123.com/category/site-om/server-sql/" itemprop="url">服务器与数据库</a></li><li><a href="http://www.itworld123.com/category/site-om/autoom/" itemprop="url">运维自动化</a></li><li><a href="http://www.itworld123.com/category/vands/" itemprop="url">云计算和存储</a></li><li><a href="http://www.itworld123.com/category/vands/%e5%ad%98%e5%82%a8%e5%9f%ba%e7%a1%80/" itemprop="url">存储基础</a></li><li><a href="http://www.itworld123.com/category/vands/ceph/" itemprop="url">Ceph</a></li><li><a href="http://www.itworld123.com/category/vands/glusterfs/" itemprop="url">Glusterfs</a></li><li><a href="http://www.itworld123.com/category/vands/openstack/" itemprop="url">OpenStack</a></li><li><a href="http://www.itworld123.com/category/vands/swift/" itemprop="url">Swift</a></li><li><a href="http://www.itworld123.com/category/programmer/" itemprop="url">程序人生</a></li><li><a href="http://www.itworld123.com/category/programmer/experience/" itemprop="url">成长经历</a></li><li><a href="http://www.itworld123.com/category/programmer/books/" itemprop="url">经典图书</a></li><li><a href="http://www.itworld123.com/category/programmer/opensource-sw/" itemprop="url">开源软件</a></li><li><a href="http://www.itworld123.com/%e5%85%b3%e4%ba%8e/" itemprop="url">关于</a></li><li><a href="http://www.itworld123.com/%e5%85%b3%e4%ba%8e%e6%88%91%e4%bb%ac/" itemprop="url">关于我们</a></li><li><a href="http://www.itworld123.com/sample-page/" itemprop="url">免责声明</a></li></ul>		</div>
+		<div class="panel-footer clearfix">
+			&copy; 2018 <a href="http://www.itworld123.com/">IT驿站</a> 版权所有 京ICP备16046913号-1 <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?3fb960eb6310643ffc24656f6dd2f50d";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<span class="pull-right copyright"><a href="http://www.dmeng.net/wordpress/" target="_blank">WordPress主题</a> 源自 <a href="http://www.dmeng.net/" rel="generator" target="_blank">多梦网络</a></span>		</div>
+	</div>
+</footer>
+<div class="btn-group-vertical floatButton"><button type="button" class="btn btn-default" id="goTop" title="去顶部"><span class="glyphicon glyphicon-arrow-up"></span></button><button type="button" class="btn btn-default" id="refresh" title="刷新"><span class="glyphicon glyphicon-repeat"></span></button><button type="button" class="btn btn-default" id="goComments" title="评论"><span class="glyphicon glyphicon-align-justify"></span></button><button type="button" class="btn btn-default" id="goBottom" title="去底部"><span class="glyphicon glyphicon-arrow-down"></span></button></div><script type='text/javascript' src='http://www.itworld123.com/wp-includes/js/wp-embed.min.js?ver=4.9.8'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.433 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2018-10-27 14:41:19 -->
+
+<!-- Compression = gzip -->
+<!-- super cache -->

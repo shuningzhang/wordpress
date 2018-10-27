@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /?connect=*
+Sitemap: http://www.itworld123.com/sitemap.xml
+Disallow: /wp-content/
+Disallow: /wp-include/
